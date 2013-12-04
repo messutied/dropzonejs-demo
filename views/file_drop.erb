@@ -2,10 +2,23 @@
 <html>
   <title>Drop files to upload</title>
   <header>
+    <style>
+      #mssg {
+        background: yellow;
+        padding: 5px;
+        margin: 10px;
+      }
+    </style>
     <link rel="stylesheet" href="/stylesheets/dropzone.css">
     <script src="javascript/dropzone.js"></script>
   </header>
   <body>
-    <form action="/file_upload" class="dropzone" method="POST"></form>
+    <form action="/file_upload" method="POST" enctype="multipart/form-data">
+      <% if params[:uploaded] %>
+        <div id="mssg">File uploaded</div>
+      <% end %>
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
   </body>
 </html>
